@@ -86,27 +86,29 @@ for k, v in fm.items():
 
 
 an = 1
-num_points = 20000
-aXs_C = fm['aXs_C'][an][0]
-aXs_C1 = np.array(fm[fm[aXs_C][0][0]])
+cn = 1
+# num_points = 20000
+aXs_C = fm[fm['mean_rasters_T'][cn][an]]
+aXs_C1 = np.array(fm[fm['mean_rasters_T'][cn][an]])
 
 # for ii in range(0,aXs_C1.shape[1]):
 #     aXs_C1[:,ii] = aXs_C1[:,ii]/4
 
-aYs_C = fm['aYs_C'][an][0]
-aYs_C1p = np.array(fm[fm[aYs_C][0][0]])
+# aYs_C = 
+sz = aXs_C1.shape[0]
+aYs_C1p = np.array(fm[fm['xs'][cn][an]])[:sz,0]
 aYs_C1 = np.zeros([aYs_C1p.shape[0],2])
-aYs_C1[:,0] = aYs_C1p[:,0]
-aYs_C1[:,1] = aYs_C1p[:,0]
+# aYs_C1[:,0] = aYs_C1p[:,0]
+# aYs_C1[:,1] = aYs_C1p[:,0]
 plt.figure(figsize=(8, 4))
-plt.plot(aXs_C1[:,1])
-plt.xlim([0,10000])
-plt.figure(figsize=(8, 4))
-plt.plot(neural_data[:,0])
-plt.xlim([0,10000])
-neural_data = aXs_C1[:num_points,:]
-pos_binned = aYs_C1[:num_points,:]
-fm.close()
+plt.plot(aYs_C1p,aXs_C1[:,1])
+# plt.xlim([0,10000])
+# plt.figure(figsize=(8, 4))
+# plt.plot(neural_data[:,0])
+# plt.xlim([0,10000])
+neural_data = aXs_C1
+pos_binned = aYs_C1
+# fm.close()
 
 
 # ## 3. Preprocess Data
